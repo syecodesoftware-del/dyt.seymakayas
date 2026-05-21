@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <title>Diyetisyen Şeyma Kayaş | Klinik Beslenme Danışmanlığı | Sivas & Online</title>
+  <meta name="description" content="Kanıta dayalı klinik beslenme danışmanlığı. İnsülin direnci, PCOS, diyabet ve kilo yönetiminde kişiye özel bilimsel beslenme programları. Sivas ve online hizmet." />
+  <meta name="keywords" content="diyetisyen sivas, online diyetisyen, klinik beslenme, insülin direnci diyeti, pcos beslenme, şeyma kayaş, dyt seymakayas" />
+  <meta name="author" content="Diyetisyen Şeyma Kayaş" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dyt.seymakayas.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Diyetisyen Şeyma Kayaş | Klinik Beslenme Danışmanlığı" />
+  <meta property="og:description" content="Kanıta dayalı klinik beslenme danışmanlığı. Kişiye özel bilimsel beslenme programları." />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MedicalBusiness","name":"Diyetisyen Şeyma Kayaş","description":"Kanıta dayalı klinik beslenme danışmanlığı.","url":"https://dyt.seymakayas.com","email":"dyt.seymakayas@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Sivas","addressCountry":"TR"},"sameAs":["https://www.instagram.com/dyt.seymakayas/"],"medicalSpecialty":"Dietetics"}
+  </script>
+
+  <!-- Fonts: Cormorant Garamond (serif elegance) + Plus Jakarta Sans (clean body) + JetBrains Mono (stats) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== VARIABLES ===== */
+    :root {
+      --bg:        #FAF8F5;
+      --bg-alt:    #F3F0EA;
+      --bg-white:  #FFFFFF;
+      --surface:   #FFFFFF;
+      --border:    #E4DDD4;
+      --border-light: #EDE8E1;
+
+      --accent:     #B8903A;   /* warm gold — matches logo measuring tape buckle */
+      --accent-rgb: 184, 144, 58;
+      --accent-dark: #9A7630;
+      --accent-light: #D4AF68;
+
+      --text:       #1A1714;
+      --text-2:     #6B6359;
+      --text-3:     #A09890;
+      --text-inv:   #FFFFFF;
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Plus Jakarta Sans', sans-serif;
+      --font-mono:  'JetBrains Mono', monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --shadow-sm: 0 1px 3px rgba(26,23,20,0.06), 0 1px 2px rgba(26,23,20,0.04);
+      --shadow-md: 0 4px 16px rgba(26,23,20,0.08), 0 2px 6px rgba(26,23,20,0.04);
+      --shadow-lg: 0 12px 40px rgba(26,23,20,0.1), 0 4px 12px rgba(26,23,20,0.06);
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ::selection { background: var(--accent); color: #fff; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-alt); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-light); border-radius: 3px; }
+
+    /* ===== SCROLL PROGRESS ===== */
+    #scrollProgress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      z-index: 10000;
+      transition: width 0.1s linear;
+    }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      z-index: 9999;
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+      transition: opacity 0.7s ease;
+    }
+    .loader-logo {
+      width: 90px; height: 90px;
+      margin-bottom: 24px;
+      opacity: 0.9;
+    }
+    .loader-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .loader-name {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      color: var(--text);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .loader-title {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      color: var(--text-3);
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+    .loader-bar-track {
+      width: 160px; height: 1px;
+      background: var(--border);
+    }
+    .loader-bar-fill {
+      height: 100%; width: 0%;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    .loader-pct {
+      font-family: var(--font-mono);
+      font-size: 0.6rem; color: var(--text-3);
+      margin-top: 10px; letter-spacing: 2px;
+    }
+
+    /* ===== NAVBAR ===== */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      transition: all 0.4s ease;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      transition: all 0.4s ease;
+    }
+    #navbar.nav-scrolled .nav-inner {
+      background: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 12px 48px;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .nav-logo-img {
+      width: 44px; height: 44px;
+      object-fit: contain;
+      filter: brightness(0); /* ensures black on light bg */
+    }
+    .nav-brand-text { font-family: var(--font-serif); }
+    .nav-brand-name {
+      font-size: 1rem; font-weight: 600;
+      letter-spacing: 0.5px; color: var(--text);
+      display: block; line-height: 1.2;
+    }
+    .nav-brand-sub {
+      font-family: var(--font-mono);
+      font-size: 0.55rem; color: var(--accent);
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+    }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--text-2); letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--text) !important;
+      color: var(--bg) !important;
+      padding: 10px 24px !important;
+      border-radius: 100px !important;
+      font-size: 0.82rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.3px !important;
+      transition: all 0.3s ease !important;
+    }
+    .nav-cta:hover {
+      background: var(--accent) !important;
+      color: #fff !important;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      background: var(--bg);
+      overflow: hidden;
+      padding: 100px 32px 80px;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 1px 1px, var(--border-light) 1px, transparent 0);
+      background-size: 32px 32px;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .hero-container {
+      max-width: 1100px; width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-left { }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-family: var(--font-mono);
+      font-size: 0.62rem; color: var(--accent);
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 28px;
+      background: var(--surface);
+    }
+    .badge-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent);
+      animation: pulseDot 2s infinite;
+    }
+    @keyframes pulseDot {
+      0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)}
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-2);
+      line-height: 1.75;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+    .hero-buttons {
+      display: flex; gap: 14px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(var(--accent-rgb), 0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      padding: 14px 32px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .hero-right {
+      display: flex; flex-direction: column; align-items: center;
+      position: relative;
+    }
+    .hero-logo-wrap {
+      width: 340px; height: 340px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .hero-logo-bg {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,144,58,0.07) 0%, transparent 70%);
+    }
+    .hero-logo-ring {
+      position: absolute; inset: -12px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      animation: rotateSlow 30s linear infinite;
+    }
+    .hero-logo-ring-inner {
+      position: absolute; inset: 20px;
+      border-radius: 50%;
+      border: 1px dashed var(--border-light);
+    }
+    @keyframes rotateSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    .hero-logo-img {
+      width: 240px; height: 240px;
+      object-fit: contain;
+      position: relative; z-index: 2;
+    }
+    .hero-scroll-hint {
+      position: absolute; bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      color: var(--text-3);
+      font-family: var(--font-mono);
+      font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(180deg, var(--border), transparent);
+      animation: scrollPulse 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100%{opacity:1;transform:scaleY(1)} 50%{opacity:0.4;transform:scaleY(0.6)}
+    }
+
+    /* ===== SCROLL ANIMATION ===== */
+    .scroll-animation {
+      height: 400vh;
+      position: relative;
+      background: var(--bg);
+    }
+    .scroll-sticky {
+      position: sticky; top: 0;
+      height: 100vh; width: 100%;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    #frameCanvas {
+      position: absolute; top: 0; left: 0;
+    }
+
+    /* ===== ANNOTATION CARDS ===== */
+    .annotation-card {
+      position: absolute;
+      bottom: 9vh; left: 5vw;
+      max-width: 340px;
+      background: rgba(250, 248, 245, 0.92);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      padding: 26px 28px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      pointer-events: none;
+      z-index: 10;
+      box-shadow: var(--shadow-md);
+    }
+    .annotation-card.visible {
+      opacity: 1; transform: translateY(0);
+      pointer-events: auto;
+    }
+    .annotation-card.right { left: auto; right: 5vw; }
+    .card-num {
+      font-family: var(--font-mono);
+      font-size: 0.6rem; color: var(--accent);
+      letter-spacing: 2px; margin-bottom: 10px;
+    }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem; font-weight: 500;
+      color: var(--text); margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 0.83rem; color: var(--text-2);
+      line-height: 1.65; margin-bottom: 16px;
+    }
+    .card-stat-wrap { display: flex; align-items: baseline; gap: 6px; }
+    .card-stat-num {
+      font-family: var(--font-serif);
+      font-size: 1.9rem; font-weight: 600;
+      color: var(--accent); line-height: 1;
+    }
+    .card-stat-lbl {
+      font-family: var(--font-mono);
+      font-size: 0.62rem; color: var(--text-3);
+      letter-spacing: 1px;
+    }
+
+    /* ===== SECTION COMMON ===== */
+    .section-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .section-header { margin-bottom: 56px; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem; color: var(--accent);
+      letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 14px; display: block;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400; color: var(--text);
+      line-height: 1.2; letter-spacing: -0.3px;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+    .section-subtitle {
+      font-size: 1rem; color: var(--text-2);
+      margin-top: 14px; line-height: 1.7; max-width: 540px;
+    }
+    .section-divider {
+      height: 1px;
+      background: var(--border-light);
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    /* ===== SPECS ===== */
+    #specs {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .spec-item {
+      padding: 44px 32px;
+      border-right: 1px solid var(--border);
+      background: var(--surface);
+      transition: background 0.3s;
+      text-align: center;
+    }
+    .spec-item:last-child { border-right: none; }
+    .spec-item:hover { background: var(--bg-alt); }
+    .spec-number {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 4vw, 4rem);
+      font-weight: 500; color: var(--text);
+      display: block; line-height: 1; margin-bottom: 10px;
+    }
+    .spec-accent { color: var(--accent); }
+    .spec-label {
+      font-size: 0.82rem; color: var(--text-2);
+      display: block; line-height: 1.4;
+    }
+
+    /* ===== SERVICES / FEATURES ===== */
+    #hizmetler {
+      padding: 100px 0;
+      background: var(--bg-alt);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(var(--accent-rgb), 0.3);
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: rgba(var(--accent-rgb), 0.08);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem; font-weight: 500;
+      color: var(--text); margin-bottom: 12px;
+    }
+    .feature-card p {
+      font-size: 0.85rem; color: var(--text-2); line-height: 1.7;
+    }
+    .feature-tag {
+      display: inline-block; margin-top: 20px;
+      font-family: var(--font-mono); font-size: 0.58rem;
+      color: var(--accent);
+      border: 1px solid rgba(var(--accent-rgb), 0.25);
+      border-radius: 100px; padding: 3px 12px; letter-spacing: 1px;
+    }
+
+    /* ===== PROCESS ===== */
+    #yaklasim {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .process-step {
+      padding: 0 28px;
+      border-right: 1px solid var(--border-light);
+      text-align: center;
+    }
+    .process-step:last-child { border-right: none; }
+    .step-num {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 22px;
+      font-family: var(--font-serif);
+      font-size: 1.1rem; color: var(--accent);
+      font-style: italic;
+    }
+    .process-step h3 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem; font-weight: 500;
+      margin-bottom: 12px; color: var(--text);
+    }
+    .process-step p {
+      font-size: 0.83rem; color: var(--text-2); line-height: 1.65;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    #testimonials {
+      padding: 100px 0;
+      background: var(--bg-alt);
+      overflow: hidden;
+    }
+    .testimonials-scroll {
+      display: flex; gap: 20px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      padding: 4px 40px 20px;
+      scrollbar-width: none;
+      cursor: grab;
+    }
+    .testimonials-scroll::-webkit-scrollbar { display: none; }
+    .testimonials-scroll:active { cursor: grabbing; }
+    .tcard {
+      min-width: 380px; max-width: 380px;
+      scroll-snap-align: start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      flex-shrink: 0;
+      transition: box-shadow 0.3s;
+    }
+    .tcard:hover { box-shadow: var(--shadow-md); }
+    .tcard-stars {
+      color: var(--accent); letter-spacing: 2px;
+      margin-bottom: 20px; font-size: 0.9rem;
+    }
+    .tcard-text {
+      font-family: var(--font-serif);
+      font-size: 1.05rem; font-style: italic;
+      color: var(--text); line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .tcard-author { display: flex; align-items: center; gap: 14px; }
+    .tcard-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 0.9rem; color: var(--accent);
+      font-style: italic; font-weight: 600;
+    }
+    .tcard-name {
+      font-family: var(--font-sans);
+      font-size: 0.88rem; font-weight: 600;
+      color: var(--text); display: block;
+    }
+    .tcard-detail {
+      font-size: 0.75rem; color: var(--text-3); margin-top: 2px;
+    }
+
+    /* ===== INSTAGRAM ===== */
+    #instagram {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .ig-post {
+      aspect-ratio: 1;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .ig-post:hover { transform: scale(1.02); box-shadow: var(--shadow-md); }
+    .ig-post img {
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .ig-post img.loaded { opacity: 1; }
+    .ig-overlay {
+      position: absolute; inset: 0;
+      background: rgba(26,23,20,0.45);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .ig-post:hover .ig-overlay { opacity: 1; }
+    .ig-likes {
+      font-family: var(--font-mono);
+      font-size: 0.7rem; color: #fff;
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    /* ===== CTA ===== */
+    #iletisim {
+      padding: 120px 0;
+      background: var(--text);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-bg-pattern {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+    .cta-inner {
+      max-width: 700px; margin: 0 auto;
+      text-align: center; padding: 0 40px;
+      position: relative; z-index: 1;
+    }
+    .cta-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem; color: var(--accent-light);
+      letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 24px; display: block;
+    }
+    .cta-inner h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 400; color: #fff;
+      line-height: 1.2; margin-bottom: 20px;
+      letter-spacing: -0.3px;
+    }
+    .cta-inner h2 em { font-style: italic; color: var(--accent-light); }
+    .cta-inner p {
+      font-size: 1rem; color: rgba(255,255,255,0.6);
+      margin-bottom: 44px; line-height: 1.75;
+    }
+    .btn-gold {
+      background: var(--accent);
+      color: #fff;
+      padding: 16px 48px;
+      border-radius: 100px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: all 0.3s; display: inline-block;
+      letter-spacing: 0.3px;
+    }
+    .btn-gold:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(var(--accent-rgb), 0.4);
+    }
+    .cta-contacts {
+      display: flex; flex-wrap: wrap; gap: 14px;
+      justify-content: center; margin-top: 32px;
+    }
+    .cpill {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px; padding: 9px 20px;
+      font-size: 0.82rem; color: rgba(255,255,255,0.65);
+      transition: all 0.2s;
+    }
+    .cpill:hover {
+      border-color: rgba(var(--accent-rgb), 0.4);
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--text);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 48px 40px 32px;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; gap: 24px;
+    }
+    .footer-brand {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .footer-logo {
+      width: 36px; height: 36px; object-fit: contain;
+      filter: brightness(0) invert(1); /* white on dark */
+    }
+    .footer-brand-text {
+      font-family: var(--font-serif);
+      font-size: 0.95rem; color: rgba(255,255,255,0.85);
+    }
+    .footer-brand-sub {
+      font-family: var(--font-mono);
+      font-size: 0.55rem; color: var(--accent-light);
+      letter-spacing: 2px; text-transform: uppercase;
+      display: block; margin-top: 2px;
+    }
+    .footer-nav {
+      display: flex; gap: 28px; justify-content: center;
+    }
+    .footer-nav a {
+      font-size: 0.8rem; color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: rgba(255,255,255,0.8); }
+    .footer-copy {
+      text-align: right;
+      font-size: 0.72rem; color: rgba(255,255,255,0.3);
+      line-height: 1.6;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-container { grid-template-columns: 1fr; text-align: center; gap: 48px; }
+      .hero-right { order: -1; }
+      .hero-subtitle { margin: 0 auto 40px; }
+      .hero-buttons { justify-content: center; }
+      .scroll-animation { height: 320vh; }
+      .specs-grid { grid-template-columns: repeat(2, 1fr); }
+      .spec-item:nth-child(2) { border-right: none; }
+      .spec-item:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
+      .spec-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .process-step { border-right: none; }
+      .ig-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-copy { text-align: center; }
+      .footer-brand { justify-content: center; }
+      .nav-inner { padding: 16px 24px !important; }
+    }
+    @media (max-width: 768px) {
+      .scroll-animation { height: 270vh; }
+      .nav-links { display: none; }
+      .hero-logo-wrap { width: 220px; height: 220px; }
+      .hero-logo-img { width: 160px; height: 160px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .ig-grid { grid-template-columns: repeat(2, 1fr); }
+      .tcard { min-width: 300px; max-width: 300px; }
+      .section-wrap { padding: 0 20px; }
+      .annotation-card {
+        bottom: 2vh; left: 3vw; right: 3vw; max-width: none;
+        padding: 12px 16px;
+        display: flex; align-items: center; gap: 12px;
+      }
+      .annotation-card.right { left: 3vw; right: 3vw; }
+      .card-desc, .card-stat-wrap { display: none; }
+      .card-num { margin-bottom: 0; font-size: 0.58rem; white-space: nowrap; }
+      .card-title { font-size: 0.9rem; margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="scrollProgress"></div>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-logo">
+    <img src="logo.png" alt="Şeyma Kayaş Logo" />
+  </div>
+  <div class="loader-name">Şeyma Kayaş</div>
+  <div class="loader-title">Klinik Diyetisyen</div>
+  <div class="loader-bar-track">
+    <div class="loader-bar-fill" id="loaderBar"></div>
+  </div>
+  <div class="loader-pct" id="loaderPct">0%</div>
+</div>
+
+<!-- Navbar -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <img class="nav-logo-img" src="logo.png" alt="Logo" />
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">Dyt. Şeyma Kayaş</span>
+        <span class="nav-brand-sub">Klinik Diyetisyen</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="#yaklasim">Yaklaşım</a>
+      <a href="#testimonials">Danışanlar</a>
+      <a href="#iletisim" class="nav-cta">Ücretsiz Görüşme</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-container">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        Klinik Beslenme · Sivas & Online
+      </div>
+      <h1 class="hero-title">
+        Sağlığınızı efsanelere değil,<br>
+        <em>bilime emanet edin.</em>
+      </h1>
+      <p class="hero-subtitle">
+        Metabolizmanızın biyolojik gerçeklerini temel alan, kişiye özel ve sürdürülebilir beslenme danışmanlığı.
+      </p>
+      <div class="hero-buttons">
+        <a href="#iletisim" class="btn-primary">Ücretsiz Ön Görüşme</a>
+        <a href="#hizmetler" class="btn-outline">Hizmetleri İncele</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-logo-wrap">
+        <div class="hero-logo-bg"></div>
+        <div class="hero-logo-ring"></div>
+        <div class="hero-logo-ring-inner"></div>
+        <img class="hero-logo-img" src="logo.png" alt="Diyetisyen Şeyma Kayaş" />
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Kaydırın</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- SCROLL ANIMATION -->
+<section class="scroll-animation">
+  <div class="scroll-sticky">
+    <canvas id="frameCanvas"></canvas>
+
+    <div class="annotation-card" data-show="0.08" data-hide="0.27">
+      <div class="card-num">01 · BİREYSEL METABOLİZMA</div>
+      <h3 class="card-title">Kişiye Özel Beslenme</h3>
+      <p class="card-desc">Hormonal profiliniz, genetik yatkınlıklarınız ve kronik hastalık öykünüze göre laboratuvar bulgularıyla tasarlanmış programlar.</p>
+      <div class="card-stat-wrap">
+        <span class="card-stat-num">%100</span>
+        <span class="card-stat-lbl">Kişiselleştirilmiş</span>
+      </div>
+    </div>
+
+    <div class="annotation-card right" data-show="0.28" data-hide="0.47">
+      <div class="card-num">02 · BİLİMSEL YAKLAŞIM</div>
+      <h3 class="card-title">Kanıta Dayalı Tıp</h3>
+      <p class="card-desc">Merdiven altı diyetler değil; klinik beslenme bilimi ve güncel araştırmalara dayalı tedavi protokolleri.</p>
+      <div class="card-stat-wrap">
+        <span class="card-stat-num">EBM</span>
+        <span class="card-stat-lbl">Kanıta Dayalı Tıp</span>
+      </div>
+    </div>
+
+    <div class="annotation-card" data-show="0.48" data-hide="0.67">
+      <div class="card-num">03 · SÜRDÜRÜLEBİLİRLİK</div>
+      <h3 class="card-title">Kalıcı Dönüşüm</h3>
+      <p class="card-desc">Şok diyetler metabolizmanızı yavaşlatır. Alışkanlık yönetimi ve porsiyon kontrolüyle kalıcı yaşam tarzı değişimi.</p>
+      <div class="card-stat-wrap">
+        <span class="card-stat-num">Kalıcı</span>
+        <span class="card-stat-lbl">Sonuçlar</span>
+      </div>
+    </div>
+
+    <div class="annotation-card right" data-show="0.68" data-hide="0.90">
+      <div class="card-num">04 · BÜTÜNSEL SAĞLIK</div>
+      <h3 class="card-title">360° Sağlık Yönetimi</h3>
+      <p class="card-desc">Bağışıklık sistemi, bağırsak mikrobiyotası ve hormonal denge — sadece kilo değil, tüm sağlığınız.</p>
+      <div class="card-stat-wrap">
+        <span class="card-stat-num">360°</span>
+        <span class="card-stat-lbl">Sağlık Yönetimi</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SPECS -->
+<section id="specs">
+  <div class="section-wrap">
+    <div class="section-header" style="text-align:center">
+      <span class="section-label">Rakamlarla</span>
+      <h2 class="section-title" style="margin:0 auto">Güvene Dayalı <em>Sonuçlar</em></h2>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-item" data-target="500" data-suffix="+">
+        <span class="spec-number">0<span class="spec-accent">+</span></span>
+        <span class="spec-label">Mutlu Danışan</span>
+      </div>
+      <div class="spec-item" data-target="7" data-suffix="+">
+        <span class="spec-number">0<span class="spec-accent">+</span></span>
+        <span class="spec-label">Yıl Klinik Deneyim</span>
+      </div>
+      <div class="spec-item" data-target="15" data-suffix="+">
+        <span class="spec-number">0<span class="spec-accent">+</span></span>
+        <span class="spec-label">Uzmanlaşma Alanı</span>
+      </div>
+      <div class="spec-item" data-target="95" data-suffix="%">
+        <span class="spec-number">0<span class="spec-accent">%</span></span>
+        <span class="spec-label">Danışan Memnuniyeti</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SERVICES -->
+<section id="hizmetler">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-label">Hizmetlerimiz</span>
+      <h2 class="section-title">Kilo Vermekten<br><em>Çok Daha Fazlası</em></h2>
+      <p class="section-subtitle">Her danışanın sağlık hikayesi ve hedefi farklıdır. Bilimsel yaklaşımla size özel çözümler sunuyoruz.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔬</div>
+        <h3>Klinik Beslenme Danışmanlığı</h3>
+        <p>İnsülin direnci, diyabet, PCOS ve tiroid bozukluklarında laboratuvar bulgularıyla desteklenen medikal beslenme tedavisi.</p>
+        <span class="feature-tag">KLİNİK · MEDİKAL</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💻</div>
+        <h3>Online Diyet Programı</h3>
+        <p>Türkiye'nin her yerinden video görüşme ve dijital takip sistemiyle esnek, profesyonel online beslenme danışmanlığı.</p>
+        <span class="feature-tag">ONLİNE · ESNEKLİK</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <h3>Sürdürülebilir Kilo Yönetimi</h3>
+        <p>Metabolizmanızı yavaşlatmadan, psikolojik baskı oluşturmadan; yasaklar değil, alışkanlık dönüşümüyle kalıcı kilo kontrolü.</p>
+        <span class="feature-tag">KALICI · SÜRDÜRÜLEBİLİR</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧬</div>
+        <h3>Metabolik Analiz & Takip</h3>
+        <p>Vücut kompozisyonu ölçümü, biyokimyasal parametre analizi ve düzenli kontrol seanslarıyla bilimsel ilerleme izleme.</p>
+        <span class="feature-tag">ANALİTİK · TAKİP</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Psikolojik Beslenme Koçluğu</h3>
+        <p>Duygusal yeme ve yeme bozukluklarına yönelik beslenme psikolojisi temelli davranış değişikliği koçluğu.</p>
+        <span class="feature-tag">PSİKOLOJİ · DAVRANIŞ</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌿</div>
+        <h3>Hastalık Bazlı Beslenme</h3>
+        <p>Kolesterol, obezite, çölyak, migren ve Ramazan diyeti dahil özel dönem beslenme planlaması ve kronik hastalık yönetimi.</p>
+        <span class="feature-tag">UZMAN · ÖZELLEŞTİRİLMİŞ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROCESS -->
+<section id="yaklasim">
+  <div class="section-wrap">
+    <div class="section-header" style="text-align:center">
+      <span class="section-label">Nasıl Çalışıyoruz</span>
+      <h2 class="section-title" style="margin:0 auto">Danışmanlık <em>Süreciniz</em></h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <h3>Ücretsiz Ön Görüşme</h3>
+        <p>Sağlık hedeflerinizi, hastalık öykünüzü ve yaşam tarzınızı birlikte değerlendiriyor, en uygun programı belirliyoruz.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <h3>Klinik Değerlendirme</h3>
+        <p>Biyokimyasal tetkikler, vücut kompozisyonu analizi ve beslenme alışkanlıklarınızın detaylı incelenmesiyle bilimsel profil oluşturuyoruz.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <h3>Kişisel Program</h3>
+        <p>Hormonal profilinize, yaşam tarzınıza ve hedeflerinize özel, uygulanabilir ve sürdürülebilir beslenme programı hazırlıyoruz.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <h3>Sürekli Takip</h3>
+        <p>Düzenli kontrol seansları ve anlık mesaj desteğiyle kalıcı dönüşümünüzü birlikte sağlıyoruz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-wrap" style="margin-bottom:40px">
+    <div class="section-header">
+      <span class="section-label">Danışan Deneyimleri</span>
+      <h2 class="section-title">Gerçek İnsanlar,<br><em>Gerçek Sonuçlar</em></h2>
+    </div>
+  </div>
+  <div class="testimonials-scroll" id="tScroll">
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"İnsülin direncim nedeniyle yıllarca mücadele ettim. Şeyma Hanım'ın laboratuvar bulgularıma dayalı programı sayesinde ilk kez gerçek bir fark yaşadım."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">AY</div>
+        <div>
+          <span class="tcard-name">Ayşe Y.</span>
+          <span class="tcard-detail">İnsülin Direnci · 3 Aylık Program</span>
+        </div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"PCOS tanısıyla yıllarca yanlış diyetler uyguladım. Burada öğrendim ki tek tip listeler hiçbir zaman çözüm değilmiş. Hormon bazlı program hayatımı değiştirdi."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">MK</div>
+        <div>
+          <span class="tcard-name">Merve K.</span>
+          <span class="tcard-detail">PCOS Beslenme Tedavisi</span>
+        </div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"Online danışmanlık konusunda çok şüpheciydim ama Şeyma Hanım beklentilerimi fazlasıyla karşıladı. Video görüşmeler ve anlık destek ile hiç yalnız hissetmedim."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">EÖ</div>
+        <div>
+          <span class="tcard-name">Elif Ö.</span>
+          <span class="tcard-detail">Online Diyet Programı · Ankara</span>
+        </div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"4 ay içinde HbA1c değerlerim istenen aralığa indi. Sadece ilaçla değil, bilimsel beslenmeyle de diyabet yönetiminin mümkün olduğunu öğrendim."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">HT</div>
+        <div>
+          <span class="tcard-name">Hakan T.</span>
+          <span class="tcard-detail">Tip 2 Diyabet · Metabolik Program</span>
+        </div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"6 ayda 22 kilo verdim ama hiçbir şey yasaklanmadı. Yaşam tarzı değişikliği deyip geçiyorduk, şimdi anlıyorum ne demekmiş."</p>
+      <div class="tcard-author">
+        <div class="tcard-avatar">SB</div>
+        <div>
+          <span class="tcard-name">Selim B.</span>
+          <span class="tcard-detail">Kilo Yönetimi · 6 Aylık Program</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-label">Instagram'da Biz</span>
+      <h2 class="section-title">Son <em>Reels'lerim</em></h2>
+    </div>
+    <div class="ig-grid" id="igGrid"></div>
+    <div style="text-align:center; margin-top:32px;">
+      <a href="https://www.instagram.com/dyt.seymakayas/" target="_blank" rel="noopener" class="btn-outline">
+        📸 &nbsp; @dyt.seymakayas'ı Takip Et
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="iletisim">
+  <div class="cta-bg-pattern"></div>
+  <div class="cta-inner">
+    <span class="cta-label">Başlamaya Hazır mısınız?</span>
+    <h2>Sağlıklı bir geleceğe <em>bugün</em> adım atın.</h2>
+    <p>Popüler trendleri değil, metabolizmanızın biyolojik gerçeklerini temel alan kişiye özel beslenme yolculuğunuz başlıyor.</p>
+    <a href="https://www.instagram.com/dyt.seymakayas/" target="_blank" rel="noopener" class="btn-gold">
+      Hemen Başlayın
+    </a>
+    <div class="cta-contacts">
+      <a href="https://www.instagram.com/dyt.seymakayas/" target="_blank" rel="noopener" class="cpill">
+        📸 @dyt.seymakayas
+      </a>
+      <a href="mailto:dyt.seymakayas@gmail.com" class="cpill">
+        ✉️ dyt.seymakayas@gmail.com
+      </a>
+      <div class="cpill">📍 Sivas & Online</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img class="footer-logo" src="logo.png" alt="Logo" />
+      <div>
+        <div class="footer-brand-text">Dyt. Şeyma Kayaş</div>
+        <span class="footer-brand-sub">Klinik Beslenme Danışmanlığı</span>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="#yaklasim">Yaklaşım</a>
+      <a href="#testimonials">Danışanlar</a>
+      <a href="#iletisim">İletişim</a>
+    </div>
+    <div class="footer-copy">
+      © 2026 Diyetisyen Şeyma Kayaş<br>Tüm hakları saklıdır.
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ===== SCROLL PROGRESS ===== */
+  const bar = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', () => {
+    bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+
+  /* ===== NAVBAR ===== */
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav-scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ===== FRAME CANVAS ===== */
+  const canvas = document.getElementById('frameCanvas');
+  const ctx = canvas.getContext('2d');
+  const FRAME_COUNT = 81;
+  const frames = new Array(FRAME_COUNT);
+  let loaded = 0, current = -1, ticking = false;
+
+  const loaderBar = document.getElementById('loaderBar');
+  const loaderPct = document.getElementById('loaderPct');
+  const loader = document.getElementById('loader');
+
+  function resizeCanvas() {
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    if (current >= 0) drawFrame(current);
+  }
+
+  function drawFrame(idx) {
+    const img = frames[idx];
+    if (!img || !img.complete) return;
+    const dpr = window.devicePixelRatio || 1;
+    const cw = canvas.width, ch = canvas.height;
+    ctx.clearRect(0, 0, cw, ch);
+
+    // Light background fill (matching site bg)
+    ctx.fillStyle = '#FAF8F5';
+    ctx.fillRect(0, 0, cw, ch);
+
+    const ir = img.naturalWidth / img.naturalHeight;
+    const cr = cw / ch;
+    let dw, dh, dx, dy;
+    const mob = window.innerWidth <= 768;
+    if (!mob) {
+      if (cr > ir) { dw = cw; dh = cw / ir; }
+      else { dh = ch; dw = ch * ir; }
+    } else {
+      const z = 1.15;
+      if (cr > ir) { dh = ch * z; dw = dh * ir; }
+      else { dw = cw * z; dh = dw / ir; }
+    }
+    dx = (cw - dw) / 2; dy = (ch - dh) / 2;
+    ctx.drawImage(img, dx, dy, dw, dh);
+  }
+
+  function onAllLoaded() {
+    loader.style.opacity = '0';
+    setTimeout(() => { loader.style.display = 'none'; }, 700);
+    resizeCanvas(); drawFrame(0); current = 0;
+  }
+
+  for (let i = 1; i <= FRAME_COUNT; i++) {
+    const img = new Image();
+    const idx = i - 1;
+    img.onload = img.onerror = () => {
+      loaded++;
+      const pct = Math.round(loaded / FRAME_COUNT * 100);
+      loaderBar.style.width = pct + '%';
+      loaderPct.textContent = pct + '%';
+      if (loaded === FRAME_COUNT) onAllLoaded();
+    };
+    img.src = 'frames/frame_' + String(i).padStart(4, '0') + '.jpg';
+    frames[idx] = img;
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  /* ===== SCROLL ANIMATION + CARDS ===== */
+  const cards = document.querySelectorAll('.annotation-card');
+  const zones = Array.from(cards).map(c => ({
+    show: parseFloat(c.dataset.show),
+    hide: parseFloat(c.dataset.hide),
+    snapped: false
+  }));
+  const scrollSec = document.querySelector('.scroll-animation');
+  let isSnapping = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const rect = scrollSec.getBoundingClientRect();
+        const prog = Math.min(1, Math.max(0, -rect.top / (scrollSec.offsetHeight - window.innerHeight)));
+        const fi = Math.min(FRAME_COUNT - 1, Math.floor(prog * FRAME_COUNT));
+        if (fi !== current) { current = fi; drawFrame(fi); }
+
+        cards.forEach((card, i) => {
+          const z = zones[i];
+          const vis = prog >= z.show && prog <= z.hide;
+          card.classList.toggle('visible', vis);
+          if (vis && !z.snapped && !isSnapping) {
+            z.snapped = true; isSnapping = true;
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => { document.body.style.overflow = ''; isSnapping = false; }, 550);
+          }
+          if (!vis) z.snapped = false;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  /* ===== SPECS COUNT-UP ===== */
+  function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+  function countUp(el, target, suffix) {
+    const start = performance.now();
+    el.querySelector('.spec-number').classList.add('counting');
+    const numEl = el.querySelector('.spec-number');
+    const accentEl = el.querySelector('.spec-accent');
+    const accentText = accentEl ? accentEl.textContent : '';
+
+    function update(now) {
+      const p = Math.min((now - start) / 2000, 1);
+      const val = Math.floor(easeOutExpo(p) * target);
+      numEl.innerHTML = val + '<span class="spec-accent">' + accentText + '</span>';
+      if (p < 1) requestAnimationFrame(update);
+      else numEl.innerHTML = target + '<span class="spec-accent">' + accentText + '</span>';
+    }
+    requestAnimationFrame(update);
+  }
+
+  const specObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.spec-item').forEach((item, i) => {
+          setTimeout(() => countUp(item, +item.dataset.target, item.dataset.suffix || ''), i * 220);
+        });
+        specObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.35 });
+  const specsEl = document.getElementById('specs');
+  if (specsEl) specObs.observe(specsEl);
+
+  /* ===== TESTIMONIAL DRAG ===== */
+  const tScroll = document.getElementById('tScroll');
+  if (tScroll) {
+    let down = false, sx, sl;
+    tScroll.addEventListener('mousedown', e => { down = true; sx = e.pageX - tScroll.offsetLeft; sl = tScroll.scrollLeft; });
+    tScroll.addEventListener('mouseleave', () => down = false);
+    tScroll.addEventListener('mouseup', () => down = false);
+    tScroll.addEventListener('mousemove', e => {
+      if (!down) return;
+      e.preventDefault();
+      tScroll.scrollLeft = sl - (e.pageX - tScroll.offsetLeft - sx);
+    });
+  }
+
+  /* ===== INSTAGRAM GRID ===== */
+  const posts = [
+    { url: "ig/reel_01.jpg", likes: 2 },
+    { url: "ig/reel_02.jpg", likes: 1 },
+    { url: "ig/reel_03.jpg", likes: 0 },
+    { url: "ig/reel_04.jpg", likes: 1 },
+    { url: "ig/reel_05.jpg", likes: 0 },
+    { url: "ig/reel_06.jpg", likes: 58 },
+    { url: "ig/reel_07.jpg", likes: 52 },
+    { url: "ig/reel_08.jpg", likes: 0 }
+  ];
+
+  const igGrid = document.getElementById('igGrid');
+  posts.forEach(p => {
+    const d = document.createElement('div');
+    d.className = 'ig-post';
+    d.innerHTML = `<img src="${p.url}" alt="Instagram" loading="lazy"><div class="ig-overlay"><span class="ig-likes">❤️ ${p.likes}</span></div>`;
+    d.querySelector('img').addEventListener('load', e => e.target.classList.add('loaded'));
+    d.addEventListener('click', () => window.open('https://www.instagram.com/dyt.seymakayas/', '_blank'));
+    igGrid.appendChild(d);
+  });
+
+})();
+</script>
+</body>
+</html>
