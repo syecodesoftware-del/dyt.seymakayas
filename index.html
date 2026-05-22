@@ -273,66 +273,36 @@
     #seContent {
       position: relative; z-index: 10;
       display: flex; flex-direction: column; align-items: center;
-      text-align: center;
-      padding: 80px 40px 100px;
       background: var(--bg);
+      overflow: hidden; padding: 0;
       opacity: 0; pointer-events: none;
       transition: opacity 0.8s ease;
     }
-    #seContent.se-visible {
-      opacity: 1; pointer-events: auto;
-    }
-    #seContent .hero-subtitle {
-      max-width: 580px; text-align: center; margin-bottom: 40px;
-    }
-    #seContent .hero-buttons { justify-content: center; }
+    #seContent.se-visible { opacity: 1; pointer-events: auto; }
 
+    /* Logo */
     .se-logo-wrap {
-      position: relative;
-      width: 140px; height: 140px;
+      position: relative; width: 120px; height: 120px;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 36px;
     }
     .se-logo-bg {
       position: absolute; inset: 0; border-radius: 50%;
-      background: radial-gradient(circle, rgba(184,144,58,0.07) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(184,144,58,0.08) 0%, transparent 70%);
     }
     .se-logo-ring {
-      position: absolute; inset: -14px; border-radius: 50%;
+      position: absolute; inset: -12px; border-radius: 50%;
       border: 1px solid var(--border);
       animation: rotateSlow 30s linear infinite;
     }
     .se-logo-ring-inner {
-      position: absolute; inset: 16px; border-radius: 50%;
+      position: absolute; inset: 14px; border-radius: 50%;
       border: 1px dashed var(--border-light);
     }
     @keyframes rotateSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-    .se-logo-img {
-      width: 96px; height: 96px;
-      object-fit: contain; position: relative; z-index: 2;
-    }
+    .se-logo-img { width: 80px; height: 80px; object-fit: contain; position: relative; z-index: 2; }
 
-    /* Shared badge / button / subtitle styles */
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid var(--border); border-radius: 100px;
-      padding: 6px 16px; font-family: var(--font-mono);
-      font-size: 0.62rem; color: var(--accent);
-      letter-spacing: 2px; text-transform: uppercase;
-      margin-bottom: 28px; background: var(--surface);
-    }
-    .badge-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--accent); animation: pulseDot 2s infinite;
-    }
-    @keyframes pulseDot {
-      0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)}
-    }
-    .hero-subtitle {
-      font-size: 1rem; color: var(--text-2);
-      line-height: 1.75; margin-bottom: 40px; max-width: 480px;
-    }
-    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    /* Shared buttons */
     .btn-primary {
       background: var(--text); color: var(--bg);
       padding: 14px 32px; border-radius: 100px;
@@ -352,9 +322,125 @@
     }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
+    /* ===== HERO2 CARD SECTION ===== */
+    .hero2-bg {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: linear-gradient(-45deg, #FAF8F5, #EDE5D4, #D4B96A, #B8903A, #E8D090, #F0EAD6);
+      background-size: 400% 400%;
+      animation: hero2Shift 20s ease infinite;
+      opacity: 0.55;
+    }
+    @keyframes hero2Shift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero2-card {
+      position: relative; z-index: 10;
+      margin: 56px 20px 0;
+      width: calc(100% - 40px); max-width: 1100px;
+      border: 1px solid var(--border); border-radius: 24px;
+      padding: 56px 64px;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(250, 248, 245, 0.72);
+      box-shadow: 0 20px 80px rgba(26,23,20,0.07), 0 2px 8px rgba(26,23,20,0.04);
+    }
+    .hero2-logo-row {
+      display: flex; justify-content: center; margin-bottom: 8px;
+    }
+    .hero2-row {
+      display: flex; align-items: center; gap: 28px;
+      flex-wrap: wrap; margin-top: 28px;
+    }
+    .hero2-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 400; line-height: 1; color: var(--text);
+      mix-blend-mode: overlay;
+    }
+    .hero2-em { font-style: italic; color: var(--accent); mix-blend-mode: normal; }
+    .hero2-ul {
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-color: rgba(184,144,58,0.5);
+    }
+    .hero2-desc {
+      font-size: 0.92rem; color: var(--text-2);
+      line-height: 1.75; max-width: 380px;
+    }
+    .hero2-specs {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .hero2-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 100px; padding: 9px 16px;
+      font-size: 0.8rem; color: var(--text-2); font-weight: 500;
+      box-shadow: var(--shadow-sm); white-space: nowrap;
+    }
+    .hero2-cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 68px; padding: 0 44px; border-radius: 100px;
+      background: var(--text); color: var(--bg);
+      font-size: 0.92rem; font-weight: 600; letter-spacing: 0.3px;
+      transition: all 0.3s ease; white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(26,23,20,0.15);
+    }
+    .hero2-cta:hover {
+      background: var(--accent);
+      box-shadow: 0 6px 28px rgba(var(--accent-rgb), 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* ===== MARQUEE ===== */
+    .hero2-marquee-section {
+      position: relative; z-index: 10; width: 100%;
+      padding: 40px 0 72px;
+    }
+    .hero2-marquee-label {
+      font-family: var(--font-mono); font-size: 0.6rem;
+      color: var(--text-3); text-align: center; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    .hero2-marquee-overflow { overflow: hidden; width: 100%; }
+    .hero2-marquee-inner {
+      display: flex; gap: 16px; width: max-content;
+      animation: hero2Marquee 32s linear infinite;
+    }
+    .hero2-marquee-overflow:hover .hero2-marquee-inner { animation-play-state: paused; }
+    @keyframes hero2Marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .hero2-mcard {
+      position: relative;
+      display: flex; align-items: stretch;
+      border: 1px solid var(--border); border-radius: 14px;
+      min-width: 240px; max-width: 240px;
+      overflow: hidden; background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+    .hero2-mcard-icon {
+      position: absolute; left: -30px; top: 50%;
+      transform: translateY(-50%);
+      background: var(--surface); border: 1px solid var(--border-light);
+      border-radius: 0 8px 8px 0; padding: 8px 10px;
+      font-size: 1rem; line-height: 1;
+    }
+    .hero2-mcard-body { flex: 1; padding: 14px 14px; }
+    .hero2-mcard-name { font-weight: 600; font-size: 0.83rem; color: var(--text); }
+    .hero2-mcard-sub  { font-size: 0.7rem; color: var(--accent); margin-top: 2px; font-family: var(--font-mono); letter-spacing: 0.5px; }
+    .hero2-mcard-desc { font-size: 0.68rem; color: var(--text-3); margin-top: 5px; line-height: 1.4; }
+    .hero2-mcard-img  { width: 76px; height: 100%; object-fit: cover; flex-shrink: 0; }
+
     @media (max-width: 768px) {
       .se-title-part { font-size: clamp(1.5rem, 6vw, 2.2rem); }
-      #seContent { padding: 60px 24px 80px; }
+      .hero2-card { padding: 36px 24px; margin: 40px 16px 0; }
+      .hero2-row { flex-direction: column; align-items: flex-start; }
+      .hero2-headline { font-size: clamp(2.2rem, 8vw, 3.5rem); }
     }
 
     /* ===== CONTAINER SCROLL ANIMATION ===== */
@@ -954,22 +1040,51 @@
     </div>
   </section>
   <div id="seContent">
-    <div class="se-logo-wrap">
-      <div class="se-logo-bg"></div>
-      <div class="se-logo-ring"></div>
-      <div class="se-logo-ring-inner"></div>
-      <img class="se-logo-img" src="logo.png" alt="Diyetisyen Şeyma Kayaş" />
+    <div class="hero2-bg"></div>
+
+    <div class="hero2-card">
+      <!-- Logo -->
+      <div class="hero2-logo-row">
+        <div class="se-logo-wrap">
+          <div class="se-logo-bg"></div>
+          <div class="se-logo-ring"></div>
+          <div class="se-logo-ring-inner"></div>
+          <img class="se-logo-img" src="logo.png" alt="Diyetisyen Şeyma Kayaş" />
+        </div>
+      </div>
+
+      <!-- Row 1: Headline + desc -->
+      <div class="hero2-row">
+        <h2 class="hero2-headline">Sağlığınızı</h2>
+        <p class="hero2-desc">Metabolizmanızın biyolojik gerçeklerini temel alan, kişiye özel ve sürdürülebilir beslenme danışmanlığı.</p>
+      </div>
+
+      <!-- Row 2: Specs + headline -->
+      <div class="hero2-row">
+        <div class="hero2-specs">
+          <span class="hero2-pill">🔬 İnsülin Direnci</span>
+          <span class="hero2-pill">🌸 PCOS</span>
+          <span class="hero2-pill">⚖️ Kilo Yönetimi</span>
+          <span class="hero2-pill">🩸 Diyabet</span>
+          <span class="hero2-pill">💻 Online</span>
+          <span class="hero2-pill">🧬 Metabolizma</span>
+        </div>
+        <h2 class="hero2-headline">bilime <em class="hero2-em">emanet</em></h2>
+      </div>
+
+      <!-- Row 3: CTA -->
+      <div class="hero2-row">
+        <h2 class="hero2-headline hero2-ul">edin.</h2>
+        <a href="#iletisim" class="hero2-cta">Ücretsiz Görüşme</a>
+      </div>
     </div>
-    <div class="hero-badge">
-      <div class="badge-dot"></div>
-      Klinik Beslenme · Sivas & Online
-    </div>
-    <p class="hero-subtitle">
-      Metabolizmanızın biyolojik gerçeklerini temel alan, kişiye özel ve sürdürülebilir beslenme danışmanlığı.
-    </p>
-    <div class="hero-buttons">
-      <a href="#iletisim" class="btn-primary">Ücretsiz Ön Görüşme</a>
-      <a href="#hizmetler" class="btn-outline">Hizmetleri İncele</a>
+
+    <!-- Marquee -->
+    <div class="hero2-marquee-section">
+      <p class="hero2-marquee-label">Uzmanlaştığımız Alanlar</p>
+      <div class="hero2-marquee-overflow">
+        <div class="hero2-marquee-inner" id="hero2Marquee"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1548,6 +1663,37 @@
 
     buildDots();
     render();
+  })();
+
+  /* ===== HERO2 MARQUEE ===== */
+  (function() {
+    var CARDS = [
+      { icon: '🔬', name: 'İnsülin Direnci',     sub: 'KLİNİK BESLENME',    desc: 'Hormon dengesi için özel protokol',        img: 'ig/reel_01.jpg' },
+      { icon: '🌸', name: 'PCOS Yönetimi',        sub: 'KADIN SAĞLIĞI',      desc: 'Polikistik over sendromu beslenmesi',      img: 'ig/reel_02.jpg' },
+      { icon: '⚖️', name: 'Kilo Yönetimi',        sub: 'METABOLİZMA',        desc: 'Kalıcı ve sürdürülebilir sonuçlar',        img: 'ig/reel_03.jpg' },
+      { icon: '🩸', name: 'Diyabet Diyeti',        sub: 'MEDİKAL BESLENME',   desc: 'Kan şekeri optimizasyonu',                 img: 'ig/reel_04.jpg' },
+      { icon: '💻', name: 'Online Danışmanlık',    sub: 'UZAKTAN HİZMET',     desc: 'Türkiye geneli video görüşme',             img: 'ig/reel_05.jpg' },
+      { icon: '🧬', name: 'Metabolik Analiz',      sub: 'VÜCUT KOMPOZİSYONU', desc: 'Biyokimyasal parametre takibi',            img: 'ig/reel_06.jpg' },
+    ];
+    var track = document.getElementById('hero2Marquee');
+    if (!track) return;
+    var html = '';
+    /* Duplicate for seamless loop */
+    [CARDS, CARDS].forEach(function(set) {
+      set.forEach(function(c) {
+        html +=
+          '<div class="hero2-mcard">' +
+            '<div class="hero2-mcard-icon">' + c.icon + '</div>' +
+            '<div class="hero2-mcard-body">' +
+              '<div class="hero2-mcard-name">' + c.name + '</div>' +
+              '<div class="hero2-mcard-sub">' + c.sub + '</div>' +
+              '<div class="hero2-mcard-desc">' + c.desc + '</div>' +
+            '</div>' +
+            '<img class="hero2-mcard-img" src="' + c.img + '" alt="' + c.name + '" loading="lazy">' +
+          '</div>';
+      });
+    });
+    track.innerHTML = html;
   })();
 
   /* ===== INSTAGRAM GRID ===== */
