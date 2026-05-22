@@ -192,217 +192,263 @@
       color: #fff !important;
     }
 
-    /* ===== HERO ===== */
-    #hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
+    /* ===== SCROLL EXPAND HERO ===== */
+    #seHero { position: relative; }
+
+    #seBg {
+      position: fixed; inset: 0; z-index: 1;
+      pointer-events: none; will-change: opacity;
+    }
+    .se-bg-inner {
+      width: 100%; height: 100%;
+      background:
+        radial-gradient(ellipse at center, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.28) 100%),
+        radial-gradient(ellipse at 30% 40%, rgba(212,175,104,0.22) 0%, transparent 55%),
+        linear-gradient(135deg, #F5F0E8 0%, #EDE5D4 40%, #E0D3BC 100%);
+    }
+
+    .se-section {
       position: relative;
-      background: var(--bg);
+      min-height: 100dvh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 10;
+    }
+
+    #seMedia {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
       overflow: hidden;
-      padding: 100px 32px 80px;
+      box-shadow: 0 8px 80px rgba(0,0,0,0.3), 0 2px 16px rgba(0,0,0,0.15);
+      will-change: width, height, border-radius;
     }
-    .hero-bg-pattern {
+    #seMedia img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .se-media-overlay {
       position: absolute; inset: 0;
-      background-image: radial-gradient(circle at 1px 1px, var(--border-light) 1px, transparent 0);
-      background-size: 32px 32px;
-      opacity: 0.6;
-      pointer-events: none;
+      background: rgba(26,23,20,0.35);
     }
-    .hero-container {
-      max-width: 1100px; width: 100%;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      position: relative; z-index: 1;
+
+    .se-title-wrap {
+      position: relative; z-index: 20;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 2px; pointer-events: none; width: 100%;
     }
-    .hero-left { }
+    .se-title-part {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw, 3.6rem);
+      font-style: italic; font-weight: 500;
+      color: #FFFFFF;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.55);
+      will-change: transform;
+      line-height: 1.25; text-align: center;
+      display: block; padding: 0 24px;
+    }
+    .se-title-em { color: var(--accent-light); font-style: italic; }
+
+    .se-scroll-hint {
+      position: absolute; bottom: 44px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      z-index: 20; pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .se-scroll-hint span {
+      font-family: var(--font-mono); font-size: 0.56rem;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .se-scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.55), transparent);
+      animation: seScrollPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes seScrollPulse {
+      0%,100%{opacity:0.4} 50%{opacity:1}
+    }
+
+    /* Content revealed after expansion */
+    #seContent {
+      position: relative; z-index: 10;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+      padding: 80px 40px 100px;
+      background: var(--bg);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+    #seContent.se-visible {
+      opacity: 1; pointer-events: auto;
+    }
+    #seContent .hero-subtitle {
+      max-width: 580px; text-align: center; margin-bottom: 40px;
+    }
+    #seContent .hero-buttons { justify-content: center; }
+
+    .se-logo-wrap {
+      position: relative;
+      width: 140px; height: 140px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 36px;
+    }
+    .se-logo-bg {
+      position: absolute; inset: 0; border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,144,58,0.07) 0%, transparent 70%);
+    }
+    .se-logo-ring {
+      position: absolute; inset: -14px; border-radius: 50%;
+      border: 1px solid var(--border);
+      animation: rotateSlow 30s linear infinite;
+    }
+    .se-logo-ring-inner {
+      position: absolute; inset: 16px; border-radius: 50%;
+      border: 1px dashed var(--border-light);
+    }
+    @keyframes rotateSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    .se-logo-img {
+      width: 96px; height: 96px;
+      object-fit: contain; position: relative; z-index: 2;
+    }
+
+    /* Shared badge / button / subtitle styles */
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 6px 16px;
-      font-family: var(--font-mono);
+      border: 1px solid var(--border); border-radius: 100px;
+      padding: 6px 16px; font-family: var(--font-mono);
       font-size: 0.62rem; color: var(--accent);
       letter-spacing: 2px; text-transform: uppercase;
-      margin-bottom: 28px;
-      background: var(--surface);
+      margin-bottom: 28px; background: var(--surface);
     }
     .badge-dot {
       width: 5px; height: 5px; border-radius: 50%;
-      background: var(--accent);
-      animation: pulseDot 2s infinite;
+      background: var(--accent); animation: pulseDot 2s infinite;
     }
     @keyframes pulseDot {
       0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)}
     }
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      font-weight: 400;
-      line-height: 1.15;
-      color: var(--text);
-      margin-bottom: 24px;
-      letter-spacing: -0.5px;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--accent);
-    }
     .hero-subtitle {
-      font-size: 1rem;
-      color: var(--text-2);
-      line-height: 1.75;
-      margin-bottom: 40px;
-      max-width: 480px;
+      font-size: 1rem; color: var(--text-2);
+      line-height: 1.75; margin-bottom: 40px; max-width: 480px;
     }
-    .hero-buttons {
-      display: flex; gap: 14px; flex-wrap: wrap;
-    }
+    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn-primary {
-      background: var(--text);
-      color: var(--bg);
-      padding: 14px 32px;
-      border-radius: 100px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      transition: all 0.3s ease;
-      display: inline-block;
-      letter-spacing: 0.3px;
+      background: var(--text); color: var(--bg);
+      padding: 14px 32px; border-radius: 100px;
+      font-weight: 600; font-size: 0.88rem;
+      transition: all 0.3s ease; display: inline-block; letter-spacing: 0.3px;
     }
     .btn-primary:hover {
-      background: var(--accent);
-      transform: translateY(-1px);
+      background: var(--accent); transform: translateY(-1px);
       box-shadow: 0 4px 20px rgba(var(--accent-rgb), 0.35);
     }
     .btn-outline {
-      background: transparent;
-      color: var(--text);
-      padding: 14px 32px;
-      border-radius: 100px;
+      background: transparent; color: var(--text);
+      padding: 14px 32px; border-radius: 100px;
       border: 1px solid var(--border);
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      display: inline-block;
+      font-size: 0.88rem; font-weight: 500;
+      transition: all 0.3s ease; display: inline-block;
     }
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .hero-right {
-      display: flex; flex-direction: column; align-items: center;
-      position: relative;
-    }
-    .hero-logo-wrap {
-      width: 340px; height: 340px;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    .hero-logo-bg {
-      position: absolute; inset: 0;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(184,144,58,0.07) 0%, transparent 70%);
-    }
-    .hero-logo-ring {
-      position: absolute; inset: -12px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      animation: rotateSlow 30s linear infinite;
-    }
-    .hero-logo-ring-inner {
-      position: absolute; inset: 20px;
-      border-radius: 50%;
-      border: 1px dashed var(--border-light);
-    }
-    @keyframes rotateSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-    .hero-logo-img {
-      width: 240px; height: 240px;
-      object-fit: contain;
-      position: relative; z-index: 2;
-    }
-    .hero-scroll-hint {
-      position: absolute; bottom: 36px; left: 50%;
-      transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
-      color: var(--text-3);
-      font-family: var(--font-mono);
-      font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px; height: 40px;
-      background: linear-gradient(180deg, var(--border), transparent);
-      animation: scrollPulse 1.5s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%,100%{opacity:1;transform:scaleY(1)} 50%{opacity:0.4;transform:scaleY(0.6)}
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .se-title-part { font-size: clamp(1.5rem, 6vw, 2.2rem); }
+      #seContent { padding: 60px 24px 80px; }
     }
 
-    /* ===== SCROLL ANIMATION ===== */
-    .scroll-animation {
-      height: 400vh;
+    /* ===== CONTAINER SCROLL ANIMATION ===== */
+    .cs-section {
+      height: clamp(700px, 80rem, 1280px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
+      padding: 16px;
       background: var(--bg);
-    }
-    .scroll-sticky {
-      position: sticky; top: 0;
-      height: 100vh; width: 100%;
       overflow: hidden;
-      background: var(--bg);
     }
-    #frameCanvas {
-      position: absolute; top: 0; left: 0;
+    .cs-inner {
+      width: 100%;
+      max-width: 1100px;
+      position: relative;
+      perspective: 1000px;
+      padding: 40px 0 160px;
     }
-
-    /* ===== ANNOTATION CARDS ===== */
-    .annotation-card {
-      position: absolute;
-      bottom: 9vh; left: 5vw;
-      max-width: 340px;
-      background: rgba(250, 248, 245, 0.92);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: var(--radius-lg);
-      padding: 26px 28px;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.45s ease, transform 0.45s ease;
-      pointer-events: none;
-      z-index: 10;
-      box-shadow: var(--shadow-md);
+    .cs-header {
+      text-align: center;
+      margin-bottom: 48px;
+      will-change: transform;
+      position: relative;
+      z-index: 2;
     }
-    .annotation-card.visible {
-      opacity: 1; transform: translateY(0);
-      pointer-events: auto;
-    }
-    .annotation-card.right { left: auto; right: 5vw; }
-    .card-num {
-      font-family: var(--font-mono);
-      font-size: 0.6rem; color: var(--accent);
-      letter-spacing: 2px; margin-bottom: 10px;
-    }
-    .card-title {
+    .cs-headline {
       font-family: var(--font-serif);
-      font-size: 1.25rem; font-weight: 500;
-      color: var(--text); margin-bottom: 10px;
-      line-height: 1.3;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text);
+      margin-top: 14px;
     }
-    .card-desc {
-      font-size: 0.83rem; color: var(--text-2);
-      line-height: 1.65; margin-bottom: 16px;
+    .cs-headline em { color: var(--accent); font-style: italic; }
+    .cs-card {
+      max-width: 900px;
+      margin: 0 auto;
+      border-radius: 24px;
+      border: 3px solid var(--border);
+      padding: 8px;
+      background: var(--text);
+      box-shadow:
+        0 0 #0000004d,
+        0 9px 20px #0000004a,
+        0 37px 37px #00000042,
+        0 84px 50px #00000026,
+        0 149px 60px #0000000a;
+      will-change: transform;
+      transform-origin: top center;
     }
-    .card-stat-wrap { display: flex; align-items: baseline; gap: 6px; }
-    .card-stat-num {
-      font-family: var(--font-serif);
-      font-size: 1.9rem; font-weight: 600;
-      color: var(--accent); line-height: 1;
+    .cs-card-inner {
+      height: clamp(260px, 40vw, 520px);
+      width: 100%;
+      overflow: hidden;
+      border-radius: 16px;
+      background: var(--bg-alt);
     }
-    .card-stat-lbl {
+    .cs-card-inner img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    /* Feature badges inside card */
+    .cs-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 20px 24px;
+      background: var(--text);
+      border-radius: 0 0 16px 16px;
+    }
+    .cs-badge {
       font-family: var(--font-mono);
-      font-size: 0.62rem; color: var(--text-3);
-      letter-spacing: 1px;
+      font-size: 0.6rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      padding: 5px 14px;
+    }
+    .cs-badge.active {
+      color: var(--accent-light);
+      border-color: rgba(184,144,58,0.4);
+    }
+    @media (max-width: 768px) {
+      .cs-section { height: clamp(600px, 60rem, 960px); padding: 8px; }
+      .cs-inner { padding: 20px 0 80px; }
+      .cs-card { margin-top: -24px; }
+      .cs-card-inner { height: clamp(200px, 50vw, 360px); }
+      .cs-badges { padding: 14px 16px; gap: 8px; }
     }
 
     /* ===== SECTION COMMON ===== */
@@ -552,57 +598,115 @@
 
     /* ===== TESTIMONIALS ===== */
     #testimonials {
-      padding: 100px 0;
+      padding: 100px 0 140px;
       background: var(--bg-alt);
       overflow: hidden;
     }
-    .testimonials-scroll {
-      display: flex; gap: 20px;
-      overflow-x: auto; scroll-snap-type: x mandatory;
-      padding: 4px 40px 20px;
-      scrollbar-width: none;
-      cursor: grab;
+    .tc-carousel-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 56px;
     }
-    .testimonials-scroll::-webkit-scrollbar { display: none; }
-    .testimonials-scroll:active { cursor: grabbing; }
+    .tc-stack {
+      position: relative;
+      width: 340px;
+      height: 280px;
+      user-select: none;
+    }
     .tcard {
-      min-width: 380px; max-width: 380px;
-      scroll-snap-align: start;
+      position: absolute;
+      width: 100%;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 36px;
-      flex-shrink: 0;
+      padding: 32px 28px 28px;
+      box-shadow:
+        0 2px 8px rgba(26,23,20,0.06),
+        0 8px 32px rgba(26,23,20,0.08);
+      cursor: grab;
       transition: box-shadow 0.3s;
+      will-change: transform, opacity;
+      touch-action: pan-y;
     }
-    .tcard:hover { box-shadow: var(--shadow-md); }
+    .tcard.is-dragging { cursor: grabbing; transition: none; }
+    .tcard-arrows {
+      position: absolute;
+      top: 14px; left: 0; right: 0;
+      display: flex; justify-content: space-between;
+      padding: 0 18px;
+      pointer-events: none;
+    }
+    .tcard-arrow {
+      font-size: 1.1rem;
+      color: var(--border);
+      pointer-events: auto;
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .tcard-arrow:hover { color: var(--accent); }
     .tcard-stars {
       color: var(--accent); letter-spacing: 2px;
-      margin-bottom: 20px; font-size: 0.9rem;
+      margin-bottom: 16px; font-size: 0.85rem;
+      text-align: center;
     }
     .tcard-text {
       font-family: var(--font-serif);
-      font-size: 1.05rem; font-style: italic;
-      color: var(--text); line-height: 1.75;
-      margin-bottom: 28px;
+      font-size: 0.98rem; font-style: italic;
+      color: var(--text); line-height: 1.7;
+      margin-bottom: 22px;
+      text-align: center;
     }
-    .tcard-author { display: flex; align-items: center; gap: 14px; }
+    .tcard-author {
+      display: flex; align-items: center;
+      gap: 12px; justify-content: center;
+    }
     .tcard-avatar {
-      width: 44px; height: 44px; border-radius: 50%;
+      width: 40px; height: 40px; border-radius: 50%;
       background: var(--bg-alt);
       border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       font-family: var(--font-serif);
-      font-size: 0.9rem; color: var(--accent);
+      font-size: 0.85rem; color: var(--accent);
       font-style: italic; font-weight: 600;
+      flex-shrink: 0;
     }
     .tcard-name {
       font-family: var(--font-sans);
-      font-size: 0.88rem; font-weight: 600;
+      font-size: 0.85rem; font-weight: 600;
       color: var(--text); display: block;
     }
     .tcard-detail {
-      font-size: 0.75rem; color: var(--text-3); margin-top: 2px;
+      font-size: 0.72rem; color: var(--text-3); margin-top: 2px;
+    }
+    /* Dots */
+    .tc-dots {
+      display: flex; gap: 8px;
+      margin-top: 48px;
+    }
+    .tc-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--border);
+      transition: background 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+    .tc-dot.active {
+      background: var(--accent);
+      transform: scale(1.3);
+    }
+    /* Swipe hint */
+    .tc-hint {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--text-3);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 18px;
+    }
+    @media (max-width: 480px) {
+      .tc-stack { width: 300px; height: 300px; }
+      .tcard { padding: 28px 22px 22px; }
     }
 
     /* ===== INSTAGRAM ===== */
@@ -832,87 +936,64 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg-pattern"></div>
-  <div class="hero-container">
-    <div class="hero-left">
-      <div class="hero-badge">
-        <div class="badge-dot"></div>
-        Klinik Beslenme · Sivas & Online
-      </div>
-      <h1 class="hero-title">
-        Sağlığınızı efsanelere değil,<br>
-        <em>bilime emanet edin.</em>
-      </h1>
-      <p class="hero-subtitle">
-        Metabolizmanızın biyolojik gerçeklerini temel alan, kişiye özel ve sürdürülebilir beslenme danışmanlığı.
-      </p>
-      <div class="hero-buttons">
-        <a href="#iletisim" class="btn-primary">Ücretsiz Ön Görüşme</a>
-        <a href="#hizmetler" class="btn-outline">Hizmetleri İncele</a>
-      </div>
+<!-- SCROLL EXPAND HERO -->
+<div id="seHero">
+  <div id="seBg"><div class="se-bg-inner"></div></div>
+  <section class="se-section">
+    <div id="seMedia">
+      <img src="frames/frame_0001.jpg" alt="Sağlıklı Beslenme" />
+      <div class="se-media-overlay"></div>
     </div>
-    <div class="hero-right">
-      <div class="hero-logo-wrap">
-        <div class="hero-logo-bg"></div>
-        <div class="hero-logo-ring"></div>
-        <div class="hero-logo-ring-inner"></div>
-        <img class="hero-logo-img" src="logo.png" alt="Diyetisyen Şeyma Kayaş" />
-      </div>
+    <div class="se-title-wrap">
+      <span class="se-title-part" id="seTitleLeft">Sağlığınızı efsanelere değil,</span>
+      <span class="se-title-part" id="seTitleRight">bilime <em class="se-title-em">emanet</em> edin.</span>
+    </div>
+    <div class="se-scroll-hint" id="seScrollHint">
+      <span>Kaydırın</span>
+      <div class="se-scroll-line"></div>
+    </div>
+  </section>
+  <div id="seContent">
+    <div class="se-logo-wrap">
+      <div class="se-logo-bg"></div>
+      <div class="se-logo-ring"></div>
+      <div class="se-logo-ring-inner"></div>
+      <img class="se-logo-img" src="logo.png" alt="Diyetisyen Şeyma Kayaş" />
+    </div>
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Klinik Beslenme · Sivas & Online
+    </div>
+    <p class="hero-subtitle">
+      Metabolizmanızın biyolojik gerçeklerini temel alan, kişiye özel ve sürdürülebilir beslenme danışmanlığı.
+    </p>
+    <div class="hero-buttons">
+      <a href="#iletisim" class="btn-primary">Ücretsiz Ön Görüşme</a>
+      <a href="#hizmetler" class="btn-outline">Hizmetleri İncele</a>
     </div>
   </div>
-  <div class="hero-scroll-hint">
-    <span>Kaydırın</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
+</div>
 
-<!-- SCROLL ANIMATION -->
-<section class="scroll-animation">
-  <div class="scroll-sticky">
-    <canvas id="frameCanvas"></canvas>
-
-    <div class="annotation-card" data-show="0.08" data-hide="0.27">
-      <div class="card-num">01 · BİREYSEL METABOLİZMA</div>
-      <h3 class="card-title">Kişiye Özel Beslenme</h3>
-      <p class="card-desc">Hormonal profiliniz, genetik yatkınlıklarınız ve kronik hastalık öykünüze göre laboratuvar bulgularıyla tasarlanmış programlar.</p>
-      <div class="card-stat-wrap">
-        <span class="card-stat-num">%100</span>
-        <span class="card-stat-lbl">Kişiselleştirilmiş</span>
+<!-- CONTAINER SCROLL ANIMATION -->
+<section class="cs-section" id="csSection">
+  <div class="cs-inner">
+    <div class="cs-header" id="csHeader">
+      <span class="section-label">Beslenme Bilimi</span>
+      <h2 class="cs-headline">Sağlığınızı <em>bilime</em><br>emanet etmenin zamanı</h2>
+    </div>
+    <div class="cs-card" id="csCard">
+      <div class="cs-card-inner">
+        <img src="frames/frame_0001.jpg" alt="Beslenme tabağı" loading="lazy" />
+      </div>
+      <div class="cs-badges">
+        <span class="cs-badge active">Klinik Beslenme</span>
+        <span class="cs-badge active">İnsülin Direnci</span>
+        <span class="cs-badge active">PCOS</span>
+        <span class="cs-badge">Kilo Yönetimi</span>
+        <span class="cs-badge">Metabolik Analiz</span>
+        <span class="cs-badge">Online Danışmanlık</span>
       </div>
     </div>
-
-    <div class="annotation-card right" data-show="0.28" data-hide="0.47">
-      <div class="card-num">02 · BİLİMSEL YAKLAŞIM</div>
-      <h3 class="card-title">Kanıta Dayalı Tıp</h3>
-      <p class="card-desc">Merdiven altı diyetler değil; klinik beslenme bilimi ve güncel araştırmalara dayalı tedavi protokolleri.</p>
-      <div class="card-stat-wrap">
-        <span class="card-stat-num">EBM</span>
-        <span class="card-stat-lbl">Kanıta Dayalı Tıp</span>
-      </div>
-    </div>
-
-    <div class="annotation-card" data-show="0.48" data-hide="0.67">
-      <div class="card-num">03 · SÜRDÜRÜLEBİLİRLİK</div>
-      <h3 class="card-title">Kalıcı Dönüşüm</h3>
-      <p class="card-desc">Şok diyetler metabolizmanızı yavaşlatır. Alışkanlık yönetimi ve porsiyon kontrolüyle kalıcı yaşam tarzı değişimi.</p>
-      <div class="card-stat-wrap">
-        <span class="card-stat-num">Kalıcı</span>
-        <span class="card-stat-lbl">Sonuçlar</span>
-      </div>
-    </div>
-
-    <div class="annotation-card right" data-show="0.68" data-hide="0.90">
-      <div class="card-num">04 · BÜTÜNSEL SAĞLIK</div>
-      <h3 class="card-title">360° Sağlık Yönetimi</h3>
-      <p class="card-desc">Bağışıklık sistemi, bağırsak mikrobiyotası ve hormonal denge — sadece kilo değil, tüm sağlığınız.</p>
-      <div class="card-stat-wrap">
-        <span class="card-stat-num">360°</span>
-        <span class="card-stat-lbl">Sağlık Yönetimi</span>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -1033,68 +1114,18 @@
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
-  <div class="section-wrap" style="margin-bottom:40px">
+  <div class="section-wrap" style="margin-bottom:0">
     <div class="section-header">
       <span class="section-label">Danışan Deneyimleri</span>
       <h2 class="section-title">Gerçek İnsanlar,<br><em>Gerçek Sonuçlar</em></h2>
     </div>
   </div>
-  <div class="testimonials-scroll" id="tScroll">
-    <div class="tcard">
-      <div class="tcard-stars">★★★★★</div>
-      <p class="tcard-text">"İnsülin direncim nedeniyle yıllarca mücadele ettim. Şeyma Hanım'ın laboratuvar bulgularıma dayalı programı sayesinde ilk kez gerçek bir fark yaşadım."</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">AY</div>
-        <div>
-          <span class="tcard-name">Ayşe Y.</span>
-          <span class="tcard-detail">İnsülin Direnci · 3 Aylık Program</span>
-        </div>
-      </div>
+  <div class="tc-carousel-wrap">
+    <div class="tc-stack" id="tcStack">
+      <!-- Cards injected by JS -->
     </div>
-    <div class="tcard">
-      <div class="tcard-stars">★★★★★</div>
-      <p class="tcard-text">"PCOS tanısıyla yıllarca yanlış diyetler uyguladım. Burada öğrendim ki tek tip listeler hiçbir zaman çözüm değilmiş. Hormon bazlı program hayatımı değiştirdi."</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">MK</div>
-        <div>
-          <span class="tcard-name">Merve K.</span>
-          <span class="tcard-detail">PCOS Beslenme Tedavisi</span>
-        </div>
-      </div>
-    </div>
-    <div class="tcard">
-      <div class="tcard-stars">★★★★★</div>
-      <p class="tcard-text">"Online danışmanlık konusunda çok şüpheciydim ama Şeyma Hanım beklentilerimi fazlasıyla karşıladı. Video görüşmeler ve anlık destek ile hiç yalnız hissetmedim."</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">EÖ</div>
-        <div>
-          <span class="tcard-name">Elif Ö.</span>
-          <span class="tcard-detail">Online Diyet Programı · Ankara</span>
-        </div>
-      </div>
-    </div>
-    <div class="tcard">
-      <div class="tcard-stars">★★★★★</div>
-      <p class="tcard-text">"4 ay içinde HbA1c değerlerim istenen aralığa indi. Sadece ilaçla değil, bilimsel beslenmeyle de diyabet yönetiminin mümkün olduğunu öğrendim."</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">HT</div>
-        <div>
-          <span class="tcard-name">Hakan T.</span>
-          <span class="tcard-detail">Tip 2 Diyabet · Metabolik Program</span>
-        </div>
-      </div>
-    </div>
-    <div class="tcard">
-      <div class="tcard-stars">★★★★★</div>
-      <p class="tcard-text">"6 ayda 22 kilo verdim ama hiçbir şey yasaklanmadı. Yaşam tarzı değişikliği deyip geçiyorduk, şimdi anlıyorum ne demekmiş."</p>
-      <div class="tcard-author">
-        <div class="tcard-avatar">SB</div>
-        <div>
-          <span class="tcard-name">Selim B.</span>
-          <span class="tcard-detail">Kilo Yönetimi · 6 Aylık Program</span>
-        </div>
-      </div>
-    </div>
+    <div class="tc-dots" id="tcDots"></div>
+    <div class="tc-hint">Sürükleyin veya kaydırın</div>
   </div>
 </section>
 
@@ -1174,110 +1205,153 @@
     nav.classList.toggle('nav-scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  /* ===== FRAME CANVAS ===== */
-  const canvas = document.getElementById('frameCanvas');
-  const ctx = canvas.getContext('2d');
-  const FRAME_COUNT = 81;
-  const frames = new Array(FRAME_COUNT);
-  let loaded = 0, current = -1, ticking = false;
-
+  /* ===== LOADER ===== */
+  const loader = document.getElementById('loader');
   const loaderBar = document.getElementById('loaderBar');
   const loaderPct = document.getElementById('loaderPct');
-  const loader = document.getElementById('loader');
-
-  function resizeCanvas() {
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = window.innerWidth * dpr;
-    canvas.height = window.innerHeight * dpr;
-    canvas.style.width = window.innerWidth + 'px';
-    canvas.style.height = window.innerHeight + 'px';
-    if (current >= 0) drawFrame(current);
-  }
-
-  function drawFrame(idx) {
-    const img = frames[idx];
-    if (!img || !img.complete) return;
-    const dpr = window.devicePixelRatio || 1;
-    const cw = canvas.width, ch = canvas.height;
-    ctx.clearRect(0, 0, cw, ch);
-
-    // Light background fill (matching site bg)
-    ctx.fillStyle = '#FAF8F5';
-    ctx.fillRect(0, 0, cw, ch);
-
-    const ir = img.naturalWidth / img.naturalHeight;
-    const cr = cw / ch;
-    let dw, dh, dx, dy;
-    const mob = window.innerWidth <= 768;
-    if (!mob) {
-      if (cr > ir) { dw = cw; dh = cw / ir; }
-      else { dh = ch; dw = ch * ir; }
+  let loaderProgress = 0;
+  const loaderInterval = setInterval(() => {
+    loaderProgress += Math.random() * 18 + 8;
+    if (loaderProgress >= 100) {
+      loaderProgress = 100;
+      clearInterval(loaderInterval);
+      loaderBar.style.width = '100%';
+      loaderPct.textContent = '100%';
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => { loader.style.display = 'none'; }, 700);
+      }, 300);
     } else {
-      const z = 1.15;
-      if (cr > ir) { dh = ch * z; dw = dh * ir; }
-      else { dw = cw * z; dh = dw / ir; }
+      loaderBar.style.width = loaderProgress + '%';
+      loaderPct.textContent = Math.round(loaderProgress) + '%';
     }
-    dx = (cw - dw) / 2; dy = (ch - dh) / 2;
-    ctx.drawImage(img, dx, dy, dw, dh);
+  }, 80);
+
+  /* ===== SCROLL EXPAND HERO ===== */
+  (function() {
+    var seBg      = document.getElementById('seBg');
+    var seMedia   = document.getElementById('seMedia');
+    var tlLeft    = document.getElementById('seTitleLeft');
+    var tlRight   = document.getElementById('seTitleRight');
+    var seContent = document.getElementById('seContent');
+    var seHint    = document.getElementById('seScrollHint');
+    var seOverlay = document.querySelector('#seMedia .se-media-overlay');
+    if (!seMedia) return;
+
+    var prog = 0, expanded = false, touchY0 = 0;
+    var isMob = window.innerWidth < 768;
+    window.addEventListener('resize', function() { isMob = window.innerWidth < 768; });
+
+    function apply(p) {
+      var w = Math.min(300 + p * (isMob ? 650 : 1250), window.innerWidth * 0.96);
+      var h = Math.min(400 + p * (isMob ? 200 : 400), window.innerHeight * 0.92);
+      var tx = p * (isMob ? 50 : 38);
+      var br = Math.max(20 * (1 - p), 0);
+      var ov = Math.max(0.35 - p * 0.35, 0);
+
+      seMedia.style.width        = w + 'px';
+      seMedia.style.height       = h + 'px';
+      seMedia.style.borderRadius = br + 'px';
+      if (seOverlay) seOverlay.style.opacity = ov;
+      seBg.style.opacity = 1 - p;
+
+      if (tlLeft)  tlLeft.style.transform  = 'translateX(-' + tx + 'vw)';
+      if (tlRight) tlRight.style.transform = 'translateX('  + tx + 'vw)';
+      if (seHint)  seHint.style.opacity    = p > 0.05 ? 0 : 1;
+
+      if (p >= 1) {
+        expanded = true;
+        seContent.classList.add('se-visible');
+        seBg.style.display = 'none';
+      } else {
+        seBg.style.display = '';
+        if (p < 0.75) seContent.classList.remove('se-visible');
+      }
+    }
+
+    function step(delta) {
+      prog = Math.min(Math.max(prog + delta, 0), 1);
+      apply(prog);
+    }
+
+    window.addEventListener('wheel', function(e) {
+      if (expanded && e.deltaY < 0 && window.scrollY <= 5) {
+        expanded = false;
+        seBg.style.display = '';
+        e.preventDefault();
+      } else if (!expanded) {
+        e.preventDefault();
+        step(e.deltaY * 0.0009);
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchstart', function(e) {
+      touchY0 = e.touches[0].clientY;
+    }, { passive: false });
+
+    window.addEventListener('touchmove', function(e) {
+      if (!touchY0) return;
+      var dy = touchY0 - e.touches[0].clientY;
+      if (expanded && dy < -20 && window.scrollY <= 5) {
+        expanded = false;
+        seBg.style.display = '';
+        e.preventDefault();
+      } else if (!expanded) {
+        e.preventDefault();
+        step(dy * (dy < 0 ? 0.008 : 0.005));
+        touchY0 = e.touches[0].clientY;
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchend', function() { touchY0 = 0; });
+    window.addEventListener('scroll', function() {
+      if (!expanded) window.scrollTo(0, 0);
+    });
+
+    apply(0);
+  })();
+
+  /* ===== CONTAINER SCROLL ANIMATION ===== */
+  const csSection = document.getElementById('csSection');
+  const csCard    = document.getElementById('csCard');
+  const csHeader  = document.getElementById('csHeader');
+  let csTicking   = false;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function clamp01(v) { return Math.min(1, Math.max(0, v)); }
+
+  function updateCS() {
+    if (!csSection) return;
+    const rect   = csSection.getBoundingClientRect();
+    const secH   = csSection.offsetHeight;
+    const winH   = window.innerHeight;
+    const prog   = clamp01((winH - rect.top) / (secH + winH));
+
+    const isMobile = window.innerWidth <= 768;
+    const scaleFrom = isMobile ? 0.7 : 1.05;
+    const scaleTo   = isMobile ? 0.9 : 1.0;
+
+    const rotateX  = lerp(20, 0, prog);
+    const scale    = lerp(scaleFrom, scaleTo, prog);
+    const translateY = lerp(0, -100, prog);
+
+    if (csCard) {
+      csCard.style.transform = `rotateX(${rotateX}deg) scale(${scale})`;
+    }
+    if (csHeader) {
+      csHeader.style.transform = `translateY(${translateY * 0.4}px)`;
+    }
+    csTicking = false;
   }
-
-  function onAllLoaded() {
-    loader.style.opacity = '0';
-    setTimeout(() => { loader.style.display = 'none'; }, 700);
-    resizeCanvas(); drawFrame(0); current = 0;
-  }
-
-  for (let i = 1; i <= FRAME_COUNT; i++) {
-    const img = new Image();
-    const idx = i - 1;
-    img.onload = img.onerror = () => {
-      loaded++;
-      const pct = Math.round(loaded / FRAME_COUNT * 100);
-      loaderBar.style.width = pct + '%';
-      loaderPct.textContent = pct + '%';
-      if (loaded === FRAME_COUNT) onAllLoaded();
-    };
-    img.src = 'frames/frame_' + String(i).padStart(4, '0') + '.jpg';
-    frames[idx] = img;
-  }
-
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  /* ===== SCROLL ANIMATION + CARDS ===== */
-  const cards = document.querySelectorAll('.annotation-card');
-  const zones = Array.from(cards).map(c => ({
-    show: parseFloat(c.dataset.show),
-    hide: parseFloat(c.dataset.hide),
-    snapped: false
-  }));
-  const scrollSec = document.querySelector('.scroll-animation');
-  let isSnapping = false;
 
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const rect = scrollSec.getBoundingClientRect();
-        const prog = Math.min(1, Math.max(0, -rect.top / (scrollSec.offsetHeight - window.innerHeight)));
-        const fi = Math.min(FRAME_COUNT - 1, Math.floor(prog * FRAME_COUNT));
-        if (fi !== current) { current = fi; drawFrame(fi); }
-
-        cards.forEach((card, i) => {
-          const z = zones[i];
-          const vis = prog >= z.show && prog <= z.hide;
-          card.classList.toggle('visible', vis);
-          if (vis && !z.snapped && !isSnapping) {
-            z.snapped = true; isSnapping = true;
-            document.body.style.overflow = 'hidden';
-            setTimeout(() => { document.body.style.overflow = ''; isSnapping = false; }, 550);
-          }
-          if (!vis) z.snapped = false;
-        });
-        ticking = false;
-      });
-      ticking = true;
+    if (!csTicking) {
+      requestAnimationFrame(updateCS);
+      csTicking = true;
     }
   }, { passive: true });
+
+  updateCS();
 
   /* ===== SPECS COUNT-UP ===== */
   function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
@@ -1312,19 +1386,169 @@
   const specsEl = document.getElementById('specs');
   if (specsEl) specObs.observe(specsEl);
 
-  /* ===== TESTIMONIAL DRAG ===== */
-  const tScroll = document.getElementById('tScroll');
-  if (tScroll) {
-    let down = false, sx, sl;
-    tScroll.addEventListener('mousedown', e => { down = true; sx = e.pageX - tScroll.offsetLeft; sl = tScroll.scrollLeft; });
-    tScroll.addEventListener('mouseleave', () => down = false);
-    tScroll.addEventListener('mouseup', () => down = false);
-    tScroll.addEventListener('mousemove', e => {
-      if (!down) return;
+  /* ===== TESTIMONIAL STACKED CAROUSEL ===== */
+  (function() {
+    const TESTIMONIALS = [
+      {
+        initials: 'A.Y.', name: 'Ayşe Y.', detail: 'İnsülin Direnci · 4 ay',
+        text: '3 yıldır kilo veremiyordum. Şeyma Hanım\'ın programıyla 4 ayda 12 kilo verdim ve insülin değerlerim normale döndü.'
+      },
+      {
+        initials: 'M.K.', name: 'Merve K.', detail: 'PCOS · 6 ay',
+        text: 'PCOS teşhisiyle çok zorlandım. Bilimsel ve sabırlı yaklaşımı sayesinde hem kilo kontrolü hem hormon dengemi sağladım.'
+      },
+      {
+        initials: 'E.Ö.', name: 'Emre Ö.', detail: 'Kilo Yönetimi · 3 ay',
+        text: 'Yemek yasağı olmadan 3 ayda 9 kilo verdim. Sürdürülebilir bir beslenme alışkanlığı kazandım.'
+      },
+      {
+        initials: 'H.T.', name: 'Hülya T.', detail: 'Diyabet Yönetimi · 5 ay',
+        text: 'Tip 2 diyabet yönetimi için gelmiştim. Kan şekeri değerlerim artık normal sınırda ve ilaç dozum azaldı.'
+      },
+      {
+        initials: 'S.B.', name: 'Selin B.', detail: 'Online Danışmanlık · 2 ay',
+        text: 'İstanbul\'dan online danışmanlık aldım. Hem pratik hem etkili. Şeyma Hanım her zaman ulaşılabilir ve destekleyici.'
+      }
+    ];
+
+    const tcStack = document.getElementById('tcStack');
+    const tcDots  = document.getElementById('tcDots');
+    if (!tcStack || !tcDots) return;
+
+    const N = TESTIMONIALS.length;
+    const LAYERS = [
+      { z: 30, ty: 0,  s: 1.00, rot: 0,   o: 1    },
+      { z: 20, ty: 10, s: 0.95, rot: -2,  o: 0.70 },
+      { z: 10, ty: 20, s: 0.90, rot: -4,  o: 0.45 },
+    ];
+
+    let idx = 0, animating = false;
+    let dragging = false, dragStartX = 0, dragDeltaX = 0;
+
+    function render() {
+      tcStack.innerHTML = '';
+      for (let l = LAYERS.length - 1; l >= 0; l--) {
+        const t = TESTIMONIALS[(idx + l) % N];
+        const lv = LAYERS[l];
+        const card = document.createElement('div');
+        card.className = 'tcard';
+        card.dataset.layer = l;
+        card.style.cssText = [
+          'z-index:' + lv.z,
+          'transform:translateY(' + lv.ty + 'px) scale(' + lv.s + ') rotate(' + lv.rot + 'deg)',
+          'opacity:' + lv.o,
+          'transition:transform 0.45s cubic-bezier(.34,1.56,.64,1),opacity 0.3s'
+        ].join(';');
+        card.innerHTML =
+          '<div class="tcard-stars">★★★★★</div>' +
+          '<p class="tcard-text">“' + t.text + '”</p>' +
+          '<div class="tcard-author">' +
+            '<div class="tcard-avatar">' + t.initials + '</div>' +
+            '<div><span class="tcard-name">' + t.name + '</span>' +
+            '<div class="tcard-detail">' + t.detail + '</div></div>' +
+          '</div>';
+        tcStack.appendChild(card);
+      }
+      requestAnimationFrame(function() {
+        var front = tcStack.querySelector('[data-layer="0"]');
+        if (front) tcStack.style.height = (front.offsetHeight + 24) + 'px';
+      });
+      updateDots();
+    }
+
+    function buildDots() {
+      tcDots.innerHTML = '';
+      TESTIMONIALS.forEach(function(_, i) {
+        var d = document.createElement('span');
+        d.className = 'tc-dot';
+        d.addEventListener('click', function() {
+          if (!animating) { idx = i; render(); }
+        });
+        tcDots.appendChild(d);
+      });
+    }
+
+    function updateDots() {
+      tcDots.querySelectorAll('.tc-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === idx);
+      });
+    }
+
+    function onRelease() {
+      if (!dragging) return;
+      dragging = false;
+      var front = tcStack.querySelector('[data-layer="0"]');
+      if (!front) return;
+      front.classList.remove('is-dragging');
+      if (Math.abs(dragDeltaX) > 80) {
+        var goNext = dragDeltaX < 0;
+        animating = true;
+        front.style.transition = 'transform 0.33s ease,opacity 0.33s ease';
+        front.style.transform = 'translateX(' + (goNext ? -500 : 500) + 'px) rotate(' + (goNext ? -25 : 25) + 'deg)';
+        front.style.opacity = '0';
+        setTimeout(function() {
+          idx = ((idx + (goNext ? 1 : -1)) % N + N) % N;
+          animating = false;
+          render();
+        }, 330);
+      } else if (Math.abs(dragDeltaX) < 10) {
+        /* tap / click — fly off left, go to next */
+        animating = true;
+        front.style.transition = 'transform 0.33s ease,opacity 0.33s ease';
+        front.style.transform = 'translateX(-500px) rotate(-25deg)';
+        front.style.opacity = '0';
+        setTimeout(function() {
+          idx = (idx + 1) % N;
+          animating = false;
+          render();
+        }, 330);
+      } else {
+        front.style.transition = 'transform 0.45s cubic-bezier(.34,1.56,.64,1)';
+        front.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+      }
+    }
+
+    tcStack.addEventListener('mousedown', function(e) {
+      if (animating) return;
+      var card = e.target.closest('[data-layer="0"]');
+      if (!card) return;
       e.preventDefault();
-      tScroll.scrollLeft = sl - (e.pageX - tScroll.offsetLeft - sx);
+      dragging = true; dragStartX = e.clientX; dragDeltaX = 0;
+      card.classList.add('is-dragging');
     });
-  }
+
+    tcStack.addEventListener('touchstart', function(e) {
+      if (animating) return;
+      var card = e.target.closest('[data-layer="0"]');
+      if (!card) return;
+      dragging = true; dragStartX = e.touches[0].clientX; dragDeltaX = 0;
+      card.classList.add('is-dragging');
+    }, { passive: true });
+
+    document.addEventListener('mousemove', function(e) {
+      if (!dragging) return;
+      var front = tcStack.querySelector('[data-layer="0"]');
+      if (!front) return;
+      dragDeltaX = e.clientX - dragStartX;
+      front.style.transition = 'none';
+      front.style.transform = 'translateX(' + dragDeltaX + 'px) rotate(' + (dragDeltaX * 0.07) + 'deg)';
+    });
+
+    tcStack.addEventListener('touchmove', function(e) {
+      if (!dragging) return;
+      var front = tcStack.querySelector('[data-layer="0"]');
+      if (!front) return;
+      dragDeltaX = e.touches[0].clientX - dragStartX;
+      front.style.transition = 'none';
+      front.style.transform = 'translateX(' + dragDeltaX + 'px) rotate(' + (dragDeltaX * 0.07) + 'deg)';
+    }, { passive: true });
+
+    document.addEventListener('mouseup', onRelease);
+    tcStack.addEventListener('touchend', onRelease);
+
+    buildDots();
+    render();
+  })();
 
   /* ===== INSTAGRAM GRID ===== */
   const posts = [
