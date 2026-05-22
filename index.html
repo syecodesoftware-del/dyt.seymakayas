@@ -1538,6 +1538,22 @@
       if (!expanded) window.scrollTo(0, 0);
     });
 
+    /* Anchor link clicks: instantly complete expansion then scroll */
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        if (expanded) return;
+        var target = document.querySelector(a.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        prog = 1;
+        apply(1);
+        expanded = true;
+        setTimeout(function() {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      });
+    });
+
     apply(0);
   })();
 
